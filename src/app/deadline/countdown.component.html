@@ -1,4 +1,10 @@
-<div class="countdown-container">
+<div class="countdown-container" *ngIf="countdown$ | async as seconds; else loading" aria-live="polite">
   <span class="countdown-label">Seconds left to deadline:</span>
-  <span class="countdown-value">{{ countdown$ | async }}</span>
+  <span class="countdown-value">{{ seconds }}</span>
 </div>
+
+<ng-template #loading>
+  <div class="countdown-container loading">
+    <span>Fetching deadline...</span>
+  </div>
+</ng-template>
